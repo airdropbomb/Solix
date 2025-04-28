@@ -7,7 +7,7 @@ from aiohttp_socks import ProxyConnector
 from fake_useragent import FakeUserAgent
 from datetime import datetime
 from colorama import *
-import asyncio, time, json, os, pytz
+import asyncio, json, os, pytz
 
 wib = pytz.timezone('Asia/Jakarta')
 
