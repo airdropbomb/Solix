@@ -3,7 +3,7 @@ Solix Depin BOT
 
 - Register [Solix Depin](https://dashboard.solixdepin.net/sign-up?ref=UnHE2cY6)
 - Download [Extension](https://chromewebstore.google.com/detail/solix/ocanmekhhffgpiiambnjmlconhhfgolg)
-- Use Code `ikmlnnnY`
+- Use Code `UnHE2cY6`
 
 ## Features
 
