@@ -1,7 +1,7 @@
 # Solix Depin BOT
 Solix Depin BOT
 
-- Register [Solix Depin](https://dashboard.solixdepin.net/?tab=ikmlnnnY)
+- Register [Solix Depin](https://dashboard.solixdepin.net/sign-up?ref=UnHE2cY6)
 - Download [Extension](https://chromewebstore.google.com/detail/solix/ocanmekhhffgpiiambnjmlconhhfgolg)
 - Use Code `ikmlnnnY`
 
@@ -23,10 +23,7 @@ Solix Depin BOT
 
 1. **Clone The Repositories:**
    ```bash
-   git clone https://github.com/vonssy/Solix-BOT.git
-   ```
-   ```bash
-   cd Solix-BOT
+   git clone https://github.com/airdropbomb/Solix.git && cd Solix
    ```
 
 2. **Install Requirements:**
