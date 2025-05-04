@@ -193,32 +193,32 @@ class Solix:
                 return self.print_message(self.mask_account(email), proxy, Fore.RED, f"GET Auth Token Failed: {Fore.YELLOW+Style.BRIGHT}{str(e)}")
     
     async def auth_refresh(self, email: str, password: str, use_proxy: bool, proxy=None, retries=5):
-    url = f"{self.BASE_API}/auth/refresh"
-    data = json.dumps({"refreshToken": self.refresh_tokens[email]})
-    headers = {
-        **self.headers,
-        "Authorization": f"Bearer {self.refresh_tokens[email]}",
-        "Content-Length": str(len(data)),
-        "Content-Type": "application/json"
-    }
-    for attempt in range(retries):
-        connector = ProxyConnector.from_url(proxy) if proxy else None
-        try:
-            async with ClientSession(connector=connector, timeout=ClientTimeout(total=60)) as session:
-                async with session.post(url=url, headers=headers, data=data) as response:
-                    if response.status == 401:
-                        await self.process_user_login(email, password, use_proxy)
-                        data = json.dumps({"refreshToken": self.refresh_tokens[email]})
-                        headers["Authorization"] = f"Bearer {self.refresh_tokens[email]}"
-                        continue
-                    response.raise_for_status()
-                    result = await response.json()
-                    return result["data"]
-        except (Exception, ClientResponseError) as e:
-            if attempt < retries - 1:
-                await asyncio.sleep(5)
-                continue
-            return self.print_message(self.mask_account(email), proxy, Fore.RED, f"Refreshing Auth Token Failed: {Fore.YELLOW+Style.BRIGHT}{str(e)}")
+        url = f"{self.BASE_API}/auth/refresh"
+        data = json.dumps({"refreshToken": self.refresh_tokens[email]})
+        headers = {
+            **self.headers,
+            "Authorization": f"Bearer {self.refresh_tokens[email]}",
+            "Content-Length": str(len(data)),
+            "Content-Type": "application/json"
+        }
+        for attempt in range(retries):
+            connector = ProxyConnector.from_url(proxy) if proxy else None
+            try:
+                async with ClientSession(connector=connector, timeout=ClientTimeout(total=60)) as session:
+                    async with session.post(url=url, headers=headers, data=data) as response:
+                        if response.status == 401:
+                            await self.process_user_login(email, password, use_proxy)
+                            data = json.dumps({"refreshToken": self.refresh_tokens[email]})
+                            headers["Authorization"] = f"Bearer {self.refresh_tokens[email]}"
+                            continue
+                        response.raise_for_status()
+                        result = await response.json()
+                        return result["data"]
+            except (Exception, ClientResponseError) as e:
+                if attempt < retries - 1:
+                    await asyncio.sleep(5)
+                    continue
+                return self.print_message(self.mask_account(email), proxy, Fore.RED, f"Refreshing Auth Token Failed: {Fore.YELLOW+Style.BRIGHT}{str(e)}")
     
     async def get_total_point(self, email: str, proxy=None, retries=5):
         url = f"{self.BASE_API}/point/get-total-point"
