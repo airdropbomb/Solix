@@ -42,8 +42,8 @@ class Solix:
         )
 
     def welcome(self):
-    self.clear_terminal()  # Clear terminal before displaying banner
-    print(f"""
+        self.clear_terminal()  # Clear terminal before displaying banner
+        print(f"""
 {Fore.GREEN + Style.BRIGHT}
        █████╗ ██████╗ ██████╗     ███╗   ██╗ ██████╗ ██████╗ ███████╗
       ██╔══██╗██╔══██╗██╔══██╗    ████╗  ██║██╔═══██╗██╔══██╗██╔════╝
@@ -216,6 +216,7 @@ class Solix:
                         return result["data"]
             except (Exception, ClientResponseError) as e:
                 if attempt < retries - 1:
+                if attempt < retries - 1:
                     await asyncio.sleep(5)
                     continue
                 return self.print_message(self.mask_account(email), proxy, Fore.RED, f"Refreshing Auth Token Failed: {Fore.YELLOW+Style.BRIGHT}{str(e)}")
@@ -245,7 +246,6 @@ class Solix:
         headers = {
             **self.headers,
             "Authorization": f"Bearer {self.access_tokens[email]}"
-
         }
         for attempt in range(retries):
             connector = ProxyConnector.from_url(proxy) if proxy else None
@@ -534,5 +534,5 @@ if __name__ == "__main__":
         print(
             f"{Fore.CYAN + Style.BRIGHT}[ {datetime.now().astimezone(wib).strftime('%x %X %Z')} ]{Style.RESET_ALL}"
             f"{Fore.WHITE + Style.BRIGHT} | {Style.RESET_ALL}"
-            f"{Fore.RED + Style.BRIGHT}[ EXIT ] Solix - BOT{Style.RESET_ALL}                                       "                              
+            f"{Fore.RED + Style.BRIGHT}[ EXIT ] Solix - BOT{Style.RESET_ALL}"                              
         )
